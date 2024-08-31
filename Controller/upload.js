@@ -12,7 +12,7 @@ const router = express.Router();
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         // Ensure the path is absolute
-        cb(null, path.join('tmp')); // Adjust the destination folder if needed
+        cb(null, path.join('/tmp')); // Adjust the destination folder if needed
     },
     filename: (req, file, cb) => {
         cb(null, `file-${Date.now()}-${file.originalname}`);
@@ -104,13 +104,13 @@ router.post('/upload', upload.single('file'), async (req, res) => {
         const user = await userModel.findOne({ Username: username });
         if (user && user.fileid) {
             // Remove the old file if it exists
-            const oldFilePath = path.join('tmp', user.fileid);
+            const oldFilePath = path.join('/tmp', user.fileid);
             if (fs.existsSync(oldFilePath)) {
                 fs.unlinkSync(oldFilePath);
             }
         }
 
-        const filePath = path.join('tmp', filename);
+        const filePath = path.join('/tmp', filename);
         const resumeContent = await analyzeResume(filePath);
         const experience = extractExperience(resumeContent);
         const skills = extractSkills(resumeContent);

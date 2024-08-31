@@ -5,7 +5,7 @@ const fs = require('fs');
 const DownloadAll = (req, res) => {
     try {
         const filename = req.params.filename;
-        const filePath = path.join('tmp', filename);
+        const filePath = path.join('/tmp', filename);
 
         if (fs.existsSync(filePath)) {
             res.sendFile(filePath); // Sends the file to the client

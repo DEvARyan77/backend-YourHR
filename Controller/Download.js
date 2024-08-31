@@ -11,7 +11,7 @@ const download = async(req,res)=>{
         }
 
         const filename = user.fileid;
-        const filePath = path.join('tmp', filename)
+        const filePath = path.join('/tmp', filename)
 
         if (fs.existsSync(filePath)) {
             res.download(filePath); // Sends the file to the client
