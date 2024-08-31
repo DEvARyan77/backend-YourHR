@@ -129,7 +129,7 @@ router.post('/upload', upload.single('file'), async (req, res) => {
         res.send("Done");
     } catch (error) {
         console.error(error);
-        res.status(500).send('Internal server error.');
+        res.status(500).send(error);
     }
 });
 
